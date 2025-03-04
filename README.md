@@ -110,7 +110,3 @@ Thank you for using lcalc!
 ## License
 
 This project is licensed under the **Apache License 2.0**. For more information, refer to the `LICENSE` file in the repository.
-
----
-
-Feel free to modify and extend lcalc for your specific needs. Contributions are welcome!
