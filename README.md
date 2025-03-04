@@ -1,4 +1,4 @@
-l# lcalc (Linux Calculator)
+# lcalc (Linux Calculator)
 
 **lcalc** is a versatile, feature-rich command-line calculator built with Python. This tool caters to a wide range of mathematical needs, including basic operations, advanced algebra, calculus, trigonometry, and matrix manipulation. Designed for precision and usability, lcalc is powered by libraries such as `Decimal`, `SymPy`, and `Rich`.
 
