@@ -1,6 +1,7 @@
 from decimal import Decimal, getcontext
 import math
-from sympy import symbols, Eq, solve, expand, Matrix, simplify, factor, diff, integrate
+from sympy import symbols, Eq, solve, expand, simplify, factor, diff, integrate, Matrix, sqrt, pi, tan, sin, cos, log
+from sympy.geometry import Point, Line, Circle, Polygon, Triangle
 from rich.console import Console
 from rich.prompt import Prompt
 from rich import print
@@ -12,8 +13,8 @@ console = Console()
 def evaluate_formula(formula):
     try:
         return eval(formula, {
-            "Decimal": Decimal, "sqrt": math.sqrt, "log": math.log, "exp": math.exp, "pi": math.pi,
-            "sin": math.sin, "cos": math.cos, "tan": math.tan, "asin": math.asin, "acos": math.acos, "atan": math.atan
+            "Decimal": Decimal, "sqrt": sqrt, "log": log, "exp": math.exp, "pi": pi,
+            "sin": sin, "cos": cos, "tan": tan, "asin": math.asin, "acos": math.acos, "atan": math.atan
         })
     except Exception as e:
         return f"Error: {e}"
@@ -106,9 +107,49 @@ def matrix_operations(matrix1, matrix2, operation):
     except Exception as e:
         return f"Error: {e}"
 
+def geometric_operations(user_input):
+    try:
+        if "distance" in user_input:
+            point1 = Prompt.ask("Enter coordinates for point 1 (e.g., (x1, y1))")
+            point2 = Prompt.ask("Enter coordinates for point 2 (e.g., (x2, y2))")
+            point1 = Point(*eval(point1))
+            point2 = Point(*eval(point2))
+            return point1.distance(point2)
+        elif "line" in user_input:
+            point1 = Prompt.ask("Enter coordinates for point 1 (e.g., (x1, y1))")
+            point2 = Prompt.ask("Enter coordinates for point 2 (e.g., (x2, y2))")
+            point1 = Point(*eval(point1))
+            point2 = Point(*eval(point2))
+            line = Line(point1, point2)
+            return line.equation()
+        elif "circle" in user_input:
+            center = Prompt.ask("Enter coordinates for the center (e.g., (x, y))")
+            radius = Prompt.ask("Enter radius")
+            center = Point(*eval(center))
+            circle = Circle(center, Decimal(radius))
+            return circle.equation()
+        elif "polygon" in user_input:
+            vertices = Prompt.ask("Enter the list of vertices for the polygon (e.g., [(x1, y1), (x2, y2), ...])")
+            vertices = [Point(*v) for v in eval(vertices)]
+            polygon = Polygon(*vertices)
+            return polygon.area, polygon.perimeter
+        elif "triangle" in user_input:
+            point1 = Prompt.ask("Enter coordinates for point 1 (e.g., (x1, y1))")
+            point2 = Prompt.ask("Enter coordinates for point 2 (e.g., (x2, y2))")
+            point3 = Prompt.ask("Enter coordinates for point 3 (e.g., (x3, y3))")
+            point1 = Point(*eval(point1))
+            point2 = Point(*eval(point2))
+            point3 = Point(*eval(point3))
+            triangle = Triangle(point1, point2, point3)
+            return triangle.area, triangle.perimeter
+        else:
+            return "Error: Invalid geometry operation."
+    except Exception as e:
+        return f"Error: {e}"
+
 def show_welcome():
     console.print("[bold magenta]Welcome to lcalc (Linux Calculator)![/bold magenta]")
-    console.print("[italic green]Supports: advanced algebra, calculus, trigonometry, matrices, and more.[/italic green]")
+    console.print("[italic green]Supports: advanced algebra, calculus, trigonometry, matrices, geometry, and more.[/italic green]")
 
 def calculator():
     show_welcome()
@@ -147,6 +188,8 @@ def calculator():
             matrix1 = eval(matrix1_str)
             matrix2 = eval(matrix2_str) if matrix2_str else None
             result = matrix_operations(matrix1, matrix2, operation)
+        elif "geometry" in user_input:
+            result = geometric_operations(user_input)
         else:
             result = evaluate_formula(user_input)
 
