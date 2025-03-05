@@ -1,112 +1,111 @@
-# lcalc (Linux Calculator)
+# lcalc - Linux Calculator
 
-**lcalc** is a versatile, feature-rich command-line calculator built with Python. This tool caters to a wide range of mathematical needs, including basic operations, advanced algebra, calculus, trigonometry, and matrix manipulation. Designed for precision and usability, lcalc is powered by libraries such as `Decimal`, `SymPy`, and `Rich`.
+lcalc is an advanced, feature-rich command-line calculator that supports a wide range of mathematical operations, from basic arithmetic to advanced algebra, calculus, trigonometry, matrix manipulations, and geometry operations. Designed with flexibility and precision in mind, lcalc leverages powerful libraries to provide accurate and efficient calculations.
 
-## Key Features
+---
 
-- **High-Precision Calculations**: Achieve up to 50 decimal places of accuracy using Python's `Decimal`.
-- **Basic Arithmetic Operations**: Support for addition, subtraction, multiplication, division, modulo, floor division, and exponentiation.
-- **Advanced Algebra**: Solve equations, simplify, expand, and factor expressions.
-- **Calculus Operations**: Perform differentiation and integration of mathematical expressions.
-- **Trigonometry Functions**: Calculate values for sine, cosine, tangent, and their inverses.
-- **Matrix Operations**: Includes matrix addition, subtraction, multiplication, determinant calculation, inversion, and transposition.
-- **Interactive Command-Line Interface**: Intuitive prompts and colored output for better user experience.
+## Features
 
-## System Requirements
+- **Basic Arithmetic**: Perform addition, subtraction, multiplication, division, modulus, integer division, and exponentiation with high precision.
+- **Algebra**: Solve equations, expand expressions, simplify formulas, and factorize polynomials.
+- **Calculus**: Differentiate and integrate expressions with respect to variables.
+- **Trigonometry**: Calculate sine, cosine, tangent, and their inverse functions with radian values.
+- **Matrix Operations**:
+  - Addition, subtraction, and multiplication of matrices.
+  - Compute determinant, inverse, and transpose of matrices.
+- **Geometry**:
+  - Calculate distances, line equations, circle equations, polygon area, and perimeter.
+  - Handle geometric shapes such as triangles, polygons, and circles.
+- **User-Friendly Interface**: Interactive prompts powered by the `rich` library make it easy to input data and understand results.
+- **Configurable Precision**: High-precision calculations enabled by the `decimal` module.
 
-- Python 3.8 or later
-- Dependencies: Install using `pip`
-    ```bash
-    pip install sympy rich
-    ```
+---
 
 ## Installation
 
-To download and run lcalc, use the following commands:
+Follow these simple steps to install and run `lcalc`:
 
+1. Download the script:
+   ```bash
+   wget https://github.com/CalestialAshley35/lcalc/blob/main/lcalc.py
+   ```
+2. Run the script:
+   ```bash
+   python lcalc.py
+   ```
+
+**Note**: Ensure you have Python installed with the necessary libraries (`sympy`, `rich`, etc.). You can install them with pip:
 ```bash
-wget https://github.com/CalestialAshley35/lcalc/raw/main/lcalc.py
-python lcalc.py
+pip install sympy rich
 ```
+
+---
 
 ## Usage
 
-Upon running the script, an interactive prompt will guide you through various operations. Below is a breakdown of the supported functionality:
+Once you run the script, you will be greeted with the welcome message. You can then input a variety of mathematical operations. Below are some examples:
 
-### Basic Operations
+---
 
-Enter expressions such as `5 + 3`, `9 * 2`, or `7 ^ 3` directly at the prompt. Supported operators include:
+### Example Session
 
-- `+`: Addition
-- `-`: Subtraction
-- `*`: Multiplication
-- `/`: Division
-- `^`: Exponentiation
-- `%`: Modulus
-- `//`: Floor Division
-
-### Solving Equations
-
-Solve algebraic equations with the `=` sign. Example:
-```text
-x^2 - 5x + 6 = 0
-```
-Results in the roots of the equation.
-
-### Algebraic Expression Manipulation
-
-1. **Expand**: Expand expressions like `(x+1)^2`.
-2. **Simplify**: Simplify expressions such as `(x^2 + 2x + 1)/(x+1)`.
-3. **Factor**: Factor expressions like `x^2 - 5x + 6`.
-
-### Calculus Operations
-
-1. **Differentiate**: Use the `diff` command. Example: `diff x^2 + 2x + 1` gives `2x + 2`.
-2. **Integrate**: Use the `integrate` command. Example: `integrate x^2 + 2x + 1` computes the integral.
-
-### Trigonometry
-
-Directly evaluate trigonometric functions:
-- `sin(pi/2)` = 1
-- `tan(pi/4)` = 1
-
-### Matrix Operations
-
-Input matrices and perform operations:
-1. Addition/Subtraction: Use `+` or `-`.
-2. Multiplication: Use `*`.
-3. Determinant: Specify `det`.
-4. Inverse: Specify `inv`.
-5. Transposition: Specify `transpose`.
-
-Example:
-```text
-Matrix 1: [[1, 2], [3, 4]]
-Matrix 2: [[5, 6], [7, 8]]
-Operation: *
-```
-
-### Custom Formula Evaluation
-
-For custom expressions (e.g., `sqrt(16) + log(100)`), enter them directly in the prompt.
-
-### Exiting the Calculator
-
-When you're done, type `no` when prompted to continue, and the application will gracefully exit.
-
-## Example Session
-
-```text
+```plaintext
 Welcome to lcalc (Linux Calculator)!
-Supports: advanced algebra, calculus, trigonometry, matrices, and more.
+Supports: advanced algebra, calculus, trigonometry, matrices, geometry, and more.
 
-Enter a formula, equation, or operation (e.g., 2.5 + 3.4, sin(pi/2), x^2 - 5x + 6 = 0): 3 + 4
-Result: 7
+Enter a formula, equation, or operation (e.g., 2.5 + 3.4, sin(pi/2), x^2 - 5x + 6 = 0): 3 + 5
+Result: 8
+
+Do you want to perform another calculation? (yes/no): yes
+
+Enter a formula, equation, or operation (e.g., 2.5 + 3.4, sin(pi/2), x^2 - 5x + 6 = 0): x^2 - 5x + 6 = 0
+Result: [2, 3]
+
+Do you want to perform another calculation? (yes/no): yes
+
+Enter a formula, equation, or operation (e.g., 2.5 + 3.4, sin(pi/2), x^2 - 5x + 6 = 0): diff(x**2 + 3*x + 2)
+Result: 2*x + 3
 
 Do you want to perform another calculation? (yes/no): no
+
 Thank you for using lcalc!
 ```
 
+---
+
+## Supported Operations
+
+### Basic Arithmetic
+- Example: `3 + 5`, `10 / 2`, `2 ** 3`
+
+### Algebra
+- Solve Equations: `x^2 - 5x + 6 = 0`
+- Expand Expressions: `expand((x + 1)**2)`
+- Simplify Formulas: `simplify(x**2 + 2*x + 1)`
+- Factorize Polynomials: `factor(x**2 - 4)`
+
+### Calculus
+- Differentiate: `diff(x**2 + 3*x + 2)`
+- Integrate: `integrate(x**2)`
+
+### Trigonometry
+- Example: `sin(pi/2)`, `cos(pi)`, `tan(pi/4)`
+
+### Matrices
+- Input: `[[1, 2], [3, 4]]` for matrix operations.
+- Operations: Add, subtract, multiply, determinant (`det`), inverse (`inv`), transpose (`transpose`).
+
+### Geometry
+- Calculate distances between points, line equations, circle equations, polygon area/perimeter, triangle properties, etc.
+
+---
+
 ## License
 
-This project is licensed under the **Apache License 2.0**. For more information, refer to the `LICENSE` file in the repository.
+This project is licensed under the **Apache License 2.0**. See the LICENSE file for more information.
+
+---
+
+## Contribution
+
+Contributions are welcome! Feel free to fork the repository, create issues, or submit pull requests to enhance the functionality of `lcalc`.
