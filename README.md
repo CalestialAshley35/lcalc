@@ -1,143 +1,196 @@
-# lcalc: Advanced Linux Calculator
+# lcalc: Advanced Calculator for Linux
 
-**lcalc** is a comprehensive command-line tool for performing advanced mathematical and geometric calculations. It is designed to handle a wide range of operations, including basic arithmetic, algebra, calculus, trigonometry, matrix manipulations, and geometry. Built with Python, **lcalc** leverages libraries like `sympy`, `decimal`, and `rich` for precision and an elegant user interface.
-
----
+**lcalc** is a feature-rich, command-line-based calculator designed for Linux users. It supports a wide range of mathematical operations, including algebra, calculus, trigonometry, geometry, matrix computations, unit conversions, and more. The tool is designed for advanced users and developers seeking a powerful and flexible computation tool directly from the terminal.
 
 ## Features
 
-- **Arithmetic Operations**: Perform addition, subtraction, multiplication, division, exponentiation, modulus, and floor division with high precision using Python's `Decimal` module.
-- **Algebra**: Solve equations, expand, simplify, and factor expressions.
-- **Calculus**: Differentiate and integrate mathematical expressions symbolically.
-- **Trigonometry**: Handle trigonometric functions like sine, cosine, tangent, and their inverses.
-- **Matrix Operations**: Add, subtract, multiply matrices, compute determinants, find matrix inverses, and transpose matrices.
-- **Geometry**: Work with points, lines, circles, polygons, and triangles to calculate distances, equations, areas, and perimeters.
-- **Custom Precision**: Configure precision for calculations (up to 50 decimal places).
-- **Interactive User Interface**: Intuitive command-line prompts powered by the `rich` library.
-
----
+- **Basic Arithmetic Operations:** Addition, subtraction, multiplication, division, modulus, integer division, and exponentiation.
+- **Algebraic Computations:** Solve equations, expand, simplify, factorize expressions, and more.
+- **Calculus Functions:** Differentiate and integrate mathematical expressions.
+- **Trigonometry:** Evaluate sine, cosine, tangent, and other trigonometric functions.
+- **Matrix Operations:** Perform matrix addition, subtraction, multiplication, determinant calculation, inversion, and transposition.
+- **Geometric Calculations:**
+  - Distance between points
+  - Equations of lines and circles
+  - Properties of polygons and triangles (e.g., area, perimeter)
+- **Unit Conversions:**
+  - Weight: Convert between kilograms, grams, pounds, and ounces.
+  - Length: Convert between meters, centimeters, millimeters, kilometers, miles, yards, and feet.
+- **Currency Conversion:** Get real-time currency conversions using forex data.
 
 ## Installation
 
-To install **lcalc**, follow these steps:
+To install lcalc, run the following command:
 
-1. Download the script:
-   ```bash
-   wget https://github.com/CalestialAshley35/lcalc/raw/main/lcalc.py
-   ```
+```bash
+wget https://github.com/CalestialAshley35/lcalc/raw/main/lcalc.py
+python lcalc.py
+```
 
-2. Run the script:
-   ```bash
-   python lcalc.py
-   ```
+Ensure that Python 3 and the required libraries (`sympy`, `rich`, and `forex-python`) are installed on your system. You can install them via pip:
 
----
+```bash
+pip install sympy rich forex-python
+```
 
 ## Usage
 
-Once installed, launch the calculator by executing the script. You will be greeted with an interactive interface to perform various types of calculations.
+Launch `lcalc` by running:
 
-### Examples of Supported Operations:
-
-#### Basic Arithmetic:
-```plaintext
-Input: 2.5 + 3.4
-Result: 5.9
+```bash
+python lcalc.py
 ```
 
-#### Algebra:
-- **Solving an equation**:
-  ```plaintext
-  Input: x^2 - 5x + 6 = 0
-  Result: [2, 3]
-  ```
+Upon launch, you will be greeted with an interactive prompt. You can input a formula, equation, or operation to compute. Below are some examples of the supported commands:
 
-- **Expanding an expression**:
-  ```plaintext
-  Input: expand (x + 2)^2
-  Result: x**2 + 4*x + 4
-  ```
+### Arithmetic Operations
 
-- **Simplifying an expression**:
-  ```plaintext
-  Input: simplify x^2 - 2x + x
-  Result: x**2 - x
-  ```
+Input:
+```
+5 + 3
+```
+Output:
+```
+8
+```
 
-- **Factoring an expression**:
-  ```plaintext
-  Input: factor x^2 - 4
-  Result: (x - 2)*(x + 2)
-  ```
+### Solving Equations
 
-#### Calculus:
-- **Differentiating an expression**:
-  ```plaintext
-  Input: diff x^3 + 3x^2
-  Result: 3*x**2 + 6*x
-  ```
+Input:
+```
+x^2 - 5x + 6 = 0
+```
+Output:
+```
+[2, 3]
+```
 
-- **Integrating an expression**:
-  ```plaintext
-  Input: integrate x^2
-  Result: x**3/3
-  ```
+### Expanding an Expression
 
-#### Matrices:
-- **Matrix addition**:
-  ```plaintext
-  Input: matrix [[1, 2], [3, 4]] + [[5, 6], [7, 8]]
-  Result: Matrix([[6, 8], [10, 12]])
-  ```
+Input:
+```
+expand (x + 2)^3
+```
+Output:
+```
+x**3 + 6*x**2 + 12*x + 8
+```
 
-- **Determinant of a matrix**:
-  ```plaintext
-  Input: matrix [[1, 2], [3, 4]] det
-  Result: -2
-  ```
+### Simplifying Expressions
 
-#### Geometry:
-- **Distance between points**:
-  ```plaintext
-  Input: geometry distance
-  Coordinates for point 1: (0, 0)
-  Coordinates for point 2: (3, 4)
-  Result: 5.0
-  ```
+Input:
+```
+simplify (x^2 - 4) / (x - 2)
+```
+Output:
+```
+x + 2
+```
 
-- **Equation of a line through two points**:
-  ```plaintext
-  Input: geometry line
-  Coordinates for point 1: (0, 0)
-  Coordinates for point 2: (3, 4)
-  Result: -4*x + 3*y
-  ```
+### Differentiating a Function
 
----
+Input:
+```
+diff x^2 + 3x
+```
+Output:
+```
+2*x + 3
+```
+
+### Integrating a Function
+
+Input:
+```
+integrate x^2
+```
+Output:
+```
+x**3/3
+```
+
+### Matrix Operations
+
+When prompted:
+1. Enter the first matrix: `[[1, 2], [3, 4]]`
+2. Enter the second matrix: `[[5, 6], [7, 8]]`
+3. Choose an operation: `+`
+
+Output:
+```
+Matrix([[6, 8], [10, 12]])
+```
+
+### Geometry
+
+**Finding Distance Between Points:**
+Input:
+```
+geometry distance
+```
+Follow prompts to input two points, e.g., `(1, 2)` and `(4, 6)`.
+Output:
+```
+5.0
+```
+
+### Unit Conversions
+
+**Convert Weight:**
+Input:
+```
+weight conversion
+```
+Follow prompts to input value and units, e.g., `1 kg to lb`.
+Output:
+```
+2.20462
+```
+
+**Convert Length:**
+Input:
+```
+length conversion
+```
+Follow prompts to input value and units, e.g., `1 mile to km`.
+Output:
+```
+1.60934
+```
+
+### Currency Conversion
+
+Input:
+```
+currency conversion
+```
+Follow prompts to input the amount and currencies, e.g., `100 USD to EUR`.
 
 ## Example Session
 
-Below is an example interaction with **lcalc**:
-
-```plaintext
+```bash
 Welcome to lcalc (Linux Calculator)!
-Supports: advanced algebra, calculus, trigonometry, matrices, geometry, and more.
+Supports: advanced algebra, calculus, trigonometry, matrices, geometry, conversions, and more.
 
-Enter a formula, equation, or operation (e.g., 2.5 + 3.4, sin(pi/2), x^2 - 5x + 6 = 0): x^2 - 5x + 6 = 0
-Result: [2, 3]
+Enter a formula, equation, or operation: x^2 - 4x + 4 = 0
+Result: [2]
 
 Do you want to perform another calculation? (yes/no): yes
-Enter a formula, equation, or operation (e.g., 2.5 + 3.4, sin(pi/2), x^2 - 5x + 6 = 0): geometry distance
-Enter coordinates for point 1 (e.g., (x1, y1)): (0, 0)
-Enter coordinates for point 2 (e.g., (x2, y2)): (3, 4)
-Result: 5.0
+
+Enter a formula, equation, or operation: diff sin(x)
+Result: cos(x)
 
 Do you want to perform another calculation? (yes/no): no
+
 Thank you for using lcalc!
 ```
 
----
-
 ## License
 
-This project is licensed under the **Apache License 2.0**. See the [LICENSE](https://www.apache.org/licenses/LICENSE-2.0) file for details.
+lcalc is licensed under the Apache License 2.0. You are free to use, modify, and distribute the software in compliance with the license.
+
+For more details, refer to the [Apache License 2.0](https://www.apache.org/licenses/LICENSE-2.0).
+
+---
+
+**Note:** Ensure a stable internet connection for real-time currency conversion functionality.
