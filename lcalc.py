@@ -5,6 +5,7 @@ from sympy.geometry import Point, Line, Circle, Polygon, Triangle
 from rich.console import Console
 from rich.prompt import Prompt
 from rich import print
+from forex_python.converter import CurrencyRates
 
 getcontext().prec = 50
 
@@ -147,9 +148,34 @@ def geometric_operations(user_input):
     except Exception as e:
         return f"Error: {e}"
 
+def convert_weight(value, from_unit, to_unit):
+    conversion_factors = {
+        "kg": 1, "g": 1000, "lb": 2.20462, "oz": 35.274
+    }
+    if from_unit in conversion_factors and to_unit in conversion_factors:
+        return Decimal(value) * conversion_factors[to_unit] / conversion_factors[from_unit]
+    else:
+        return "Invalid units for weight conversion."
+
+def convert_length(value, from_unit, to_unit):
+    conversion_factors = {
+        "m": 1, "cm": 100, "mm": 1000, "km": 0.001, "mile": 0.000621371, "yard": 1.09361, "foot": 3.28084
+    }
+    if from_unit in conversion_factors and to_unit in conversion_factors:
+        return Decimal(value) * conversion_factors[to_unit] / conversion_factors[from_unit]
+    else:
+        return "Invalid units for length conversion."
+
+def convert_currency(amount, from_currency, to_currency):
+    try:
+        cr = CurrencyRates()
+        return cr.convert(from_currency, to_currency, amount)
+    except Exception as e:
+        return f"Error: {e}"
+
 def show_welcome():
     console.print("[bold magenta]Welcome to lcalc (Linux Calculator)![/bold magenta]")
-    console.print("[italic green]Supports: advanced algebra, calculus, trigonometry, matrices, geometry, and more.[/italic green]")
+    console.print("[italic green]Supports: advanced algebra, calculus, trigonometry, matrices, geometry, conversions, and more.[/italic green]")
 
 def calculator():
     show_welcome()
@@ -190,6 +216,21 @@ def calculator():
             result = matrix_operations(matrix1, matrix2, operation)
         elif "geometry" in user_input:
             result = geometric_operations(user_input)
+        elif "weight" in user_input:
+            value = Prompt.ask("Enter the value to convert")
+            from_unit = Prompt.ask("Enter the unit to convert from (kg, g, lb, oz)")
+            to_unit = Prompt.ask("Enter the unit to convert to (kg, g, lb, oz)")
+            result = convert_weight(value, from_unit, to_unit)
+        elif "length" in user_input:
+            value = Prompt.ask("Enter the value to convert")
+            from_unit = Prompt.ask("Enter the unit to convert from (m, cm, mm, km, mile, yard, foot)")
+            to_unit = Prompt.ask("Enter the unit to convert to (m, cm, mm, km, mile, yard, foot)")
+            result = convert_length(value, from_unit, to_unit)
+        elif "currency" in user_input:
+            amount = Prompt.ask("Enter amount")
+            from_currency = Prompt.ask("Enter from currency (e.g., USD, EUR, GBP)")
+            to_currency = Prompt.ask("Enter to currency (e.g., USD, EUR, GBP)")
+            result = convert_currency(amount, from_currency, to_currency)
         else:
             result = evaluate_formula(user_input)
 
